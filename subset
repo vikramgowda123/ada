@@ -1,0 +1,12 @@
+def subset_sum(s, d, subset=[], i=0):
+    if sum(subset) == d:
+        print(subset)
+        return
+    if i == len(s) or sum(subset) > d:
+        return
+    subset_sum(s, d, subset + [s[i]], i+1)  # include
+    subset_sum(s, d, subset, i+1)           # exclude
+
+s = list(map(int, input("Enter set: ").split()))
+d = int(input("Enter target: "))
+subset_sum(s, d)
