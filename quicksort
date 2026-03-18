@@ -1,0 +1,30 @@
+import random, time
+import matplotlib.pyplot as plt
+
+def quick_sort(a):
+    if len(a) <= 1:
+        return a
+    p = a[len(a)//2]
+    return quick_sort([x for x in a if x < p]) + \
+           [x for x in a if x == p] + \
+           quick_sort([x for x in a if x > p])
+
+n_values = [5000, 7000, 9000, 11000, 13000]
+time_taken = []
+
+for n in n_values:
+    arr = [random.randint(1, 100000) for _ in range(n)]
+
+    start = time.time()
+    arr = quick_sort(arr)
+    end = time.time()
+
+    time_taken.append(end - start)
+    print("n =", n, "Time =", round(end - start, 2))
+
+plt.plot(n_values, time_taken, marker='o')
+plt.xlabel("n")
+plt.ylabel("time")
+plt.title("Quick Sort")
+plt.grid()
+plt.show()
