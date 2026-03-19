@@ -1,0 +1,15 @@
+n = int(input())
+graph = [list(map(int, input().split())) for _ in range(n)]
+visited = [0]*n
+stack = []
+
+def dfs(v):
+    visited[v] = 1
+    for i in range(n):
+        if graph[v][i] and not visited[i]: dfs(i)
+    stack.append(v)
+
+for i in range(n):
+    if not visited[i]: dfs(i)
+
+print(stack[::-1])
